@@ -1,25 +1,22 @@
 /* @flow */
 
 import { getClientID } from '@paypal/sdk-client/src';
+import { create, type ZoidComponent } from 'zoid/src';
 
-export const ExamplePay = {
-    render(options : {| buttonText : string |}, container : string) {
+export type ExamplePayType = {|
+    foo: string
+|};
 
-        if (!options.buttonText) {
-            throw new Error(`Expected options.buttonText`);
+export const ExamplePay : () => ZoidComponent<ExamplePayType> = create({
+       tag: 'paypal-example',
+
+        url: () => 'https://example.com',
+
+        props: {
+            foo: {
+                type: 'string',
+                required: false,
+                queryParam: true
+            }
         }
-
-        const el = document.querySelector(container);
-
-        if (!el) {
-            throw new Error(`Can not find element: ${ container }`);
-        }
-
-        el.innerHTML = `<button client-id=${ getClientID() }>${ options.buttonText }</button>`;
-    }
-};
-
-export const EXAMPLE_CONSTANTS = {
-    FOO: 'FOO',
-    BAR: 'BAR'
-};
+});
