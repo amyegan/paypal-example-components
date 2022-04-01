@@ -2,21 +2,23 @@
 
 import { getClientID } from '@paypal/sdk-client/src';
 import { create, type ZoidComponent } from 'zoid/src';
+import { ZalgoPromise } from 'zalgo-promise/src';
 
-export type ExamplePayType = {|
-    foo: string
-|};
 
-export const ExamplePay : () => ZoidComponent<ExamplePayType> = create({
-       tag: 'paypal-example',
+export const Experience = create({
+    tag: 'paypal-experience',
 
-        url: () => 'https://example.com',
+    url: () => 'http://localhost.paypal.com:8080/experience.html',
 
-        props: {
-            foo: {
-                type: 'string',
-                required: false,
-                queryParam: true
-            }
+    props: {
+        email: {
+            type:       'string',
+            required:   false
+        },
+
+        onDataFound: {
+            type:     'function',
+            required: false
         }
+    }
 });

@@ -3,9 +3,7 @@
 
 module.exports = {
 
-    'example-pay': {
-        entry: './src/component',
-        
-        staticNamespace: '__example_pay__'
+    'paypal-experience': {
+        entry: './src/component'
     }
 };
